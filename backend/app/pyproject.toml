@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "money transfer"
+version = "0.1.0"
+description = ""
+authors = ["marc"]
+license = "LGP"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+SQLAlchemy = "2.0.35"
+psycopg2-binary = "^2.9.3"
+alembic = "1.13.3"
+tenacity = "^8.0.1"
+python-dotenv = "1.0.1"
+uvicorn = "^0.18.2"
+Jinja2 = "^3.1.2"
+passlib = "^1.7.4"
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+python-multipart = "^0.0.5"
+asyncpg = "^0.27.0"
+gunicorn = "^20.1.0"
+httpx = "^0.23.3"
+twilio = "^7.16.5"
+fastapi-sessions = "^0.3.2"
+aiosqlite = "0.20.0"
+websockets = "13.1"
+fastapi = "0.115.0"
+pydantic = {version = "2.9.2", extras = ["email"]}
+pydantic-settings = "2.5.2"
+anyio = "4.7.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

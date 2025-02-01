@@ -1,0 +1,223 @@
+<html><head><base href=""><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Регистрация</title><style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    padding: 20px;
+  }
+
+  .container {
+    max-width: 700px;
+    width: 100%;
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+  }
+
+  .container .title {
+    font-size: 25px;
+    font-weight: 500;
+    position: relative;
+  }
+
+  .container .title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 30px;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+  }
+
+  .form {
+    margin-top: 20px;
+  }
+
+  .input-group {
+    margin-bottom: 15px;
+  }
+
+  .input-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+
+  .input-group input {
+    height: 45px;
+    width: 100%;
+    outline: none;
+    border: 1px solid #ddd;
+    padding: 0 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+
+  .input-group input:focus {
+    border-color: #9b59b6;
+  }
+
+  .button {
+    height: 45px;
+    margin: 15px 0;
+    width: 100%;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .button:hover {
+    background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+  }
+
+  @media (max-width: 584px) {
+    .container {
+      max-width: 100%;
+    }
+  }
+
+  .error {
+    color: #ff0000;
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+  }
+
+  .input-group.error input {
+    border-color: #ff0000;
+  }
+</style></head><body>
+  <div class="container">
+    <div class="title">Регистрация</div>
+    <form class="form" id="registrationForm">
+      <div class="input-group">
+        <label>Имя</label>
+        <input type="text" id="firstName" placeholder="Введите ваше имя" required>
+        <div class="error" id="firstNameError">Пожалуйста, введите корректное имя</div>
+      </div>
+
+      <div class="input-group">
+        <label>Фамилия</label>
+        <input type="text" id="lastName" placeholder="Введите вашу фамилию" required>
+        <div class="error" id="lastNameError">Пожалуйста, введите корректную фамилию</div>
+      </div>
+
+      <div class="input-group">
+        <label>Email</label>
+        <input type="email" id="email" placeholder="Введите ваш email" required>
+        <div class="error" id="emailError">Пожалуйста, введите корректный email</div>
+      </div>
+
+      <div class="input-group">
+        <label>Пароль</label>
+        <input type="password" id="password" placeholder="Введите пароль" required>
+        <div class="error" id="passwordError">Пароль должен содержать минимум 8 символов</div>
+      </div>
+
+      <div class="input-group">
+        <label>Подтвердите пароль</label>
+        <input type="password" id="confirmPassword" placeholder="Подтвердите пароль" required>
+        <div class="error" id="confirmPasswordError">Пароли не совпадают</div>
+      </div>
+
+      <button type="submit" class="button">Зарегистрироваться</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('registrationForm');
+    const firstName = document.getElementById('firstName');
+    const lastName = document.getElementById('lastName');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+    const confirmPassword = document.getElementById('confirmPassword');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let isValid = true;
+
+      // Validate First Name
+      if (firstName.value.trim().length < 2) {
+        showError('firstName');
+        isValid = false;
+      } else {
+        hideError('firstName');
+      }
+
+      // Validate Last Name
+      if (lastName.value.trim().length < 2) {
+        showError('lastName');
+        isValid = false;
+      } else {
+        hideError('lastName');
+      }
+
+      // Validate Email
+      if (!isValidEmail(email.value)) {
+        showError('email');
+        isValid = false;
+      } else {
+        hideError('email');
+      }
+
+      // Validate Password
+      if (password.value.length < 8) {
+        showError('password');
+        isValid = false;
+      } else {
+        hideError('password');
+      }
+
+      // Validate Confirm Password
+      if (password.value !== confirmPassword.value) {
+        showError('confirmPassword');
+        isValid = false;
+      } else {
+        hideError('confirmPassword');
+      }
+
+      if (isValid) {
+        // Here you would typically send the data to your server
+        console.log('Form submitted successfully');
+        alert('Регистрация успешно завершена!');
+        form.reset();
+      }
+    });
+
+    function isValidEmail(email) {
+      const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(email).toLowerCase());
+    }
+
+    function showError(fieldId) {
+      const field = document.getElementById(fieldId);
+      const errorDiv = document.getElementById(fieldId + 'Error');
+      field.parentElement.classList.add('error');
+      errorDiv.style.display = 'block';
+    }
+
+    function hideError(fieldId) {
+      const field = document.getElementById(fieldId);
+      const errorDiv = document.getElementById(fieldId + 'Error');
+      field.parentElement.classList.remove('error');
+      errorDiv.style.display = 'none';
+    }
+  </script>
+</body></html>

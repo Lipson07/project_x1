@@ -1,0 +1,11 @@
+.idea/
+venv/
+__pycache__/
+backend/app/alembic/versions/
+./git
+.git
+.DS_Store
+versions
+alembic_old
+*.sqlite3
+*.sqlite
