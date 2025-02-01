@@ -7,5 +7,6 @@ backend/app/alembic/versions/
 .DS_Store
 versions
 alembic_old
+*.db
 *.sqlite3
 *.sqlite
