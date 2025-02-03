@@ -10,7 +10,7 @@ from app.schemas.user import User, UserCreate, UserUpdate
 router = APIRouter()
 
 
-@router.get('/read_user/{id}', response_model=User)
+@router.get('/read/{id}', response_model=User)
 async def read_user(id: int,
                     db: AsyncSession = Depends(deps.get_db),
                     current_user: models.User = Depends(deps.get_current_user)) -> Any:
@@ -24,7 +24,7 @@ async def read_user(id: int,
     return user
 
 
-@router.get('/read_users', response_model=List[User])
+@router.get('/read', response_model=List[User])
 async def read_users(db: AsyncSession = Depends(deps.get_db),
                      current_user: models.User = Depends(deps.get_current_user),
                      ) -> Any:
@@ -34,7 +34,7 @@ async def read_users(db: AsyncSession = Depends(deps.get_db),
     return await crud.user.get_all(db)
 
 
-@router.post('/create_user', response_model=User)
+@router.post('/create', response_model=User)
 async def create_user(*, db: AsyncSession = Depends(deps.get_db),
                       current_user: models.User = Depends(deps.get_current_user),
                       user_in: UserCreate,
@@ -45,7 +45,7 @@ async def create_user(*, db: AsyncSession = Depends(deps.get_db),
     return await crud.user.create(db=db, obj_in=user_in)
 
 
-@router.put('/update_user/{id}', response_model=User)
+@router.put('/update/{id}', response_model=User)
 async def update_user(*, db: AsyncSession = Depends(deps.get_db),
                       current_user: models.User = Depends(deps.get_current_user),
                       id: int, user_in: UserUpdate,
@@ -60,7 +60,7 @@ async def update_user(*, db: AsyncSession = Depends(deps.get_db),
     return user
 
 
-@router.delete('/delete_user/{id}', response_model=User)
+@router.delete('/delete/{id}', response_model=User)
 async def delete_user(*, db: AsyncSession = Depends(deps.get_db),
                       current_user: models.User = Depends(deps.get_current_user),
                       id: int,

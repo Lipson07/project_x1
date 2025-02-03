@@ -19,7 +19,7 @@ from app.core.config import settings
 BASE_PATH = Path(__file__).resolve().parent
 TEMPLATES = Jinja2Templates(directory=str(BASE_PATH / "templates"))
 
-app = FastAPI(title="My FastAPI framework backend API project")
+app = FastAPI(title="Intelligent Digital Systems Web Site")
 
 app.mount("/static", StaticFiles(directory=str(BASE_PATH / "static")), name="static")
 

@@ -27,7 +27,7 @@ from app.schemas import SessionData
 router = APIRouter()
 
 
-@router.post("/register/", response_model=schemas.user.User, status_code=201)  # 1
+@router.post("/register", response_model=schemas.user.User, status_code=201)  # 1
 async def register(
         *,
         db: AsyncSession = Depends(deps.get_db),  # 2
@@ -60,7 +60,7 @@ async def register(
     return created_user
 
 
-@router.post("/login/", )  # response_model=app.schemas.user.User)
+@router.post("/login", )  # response_model=app.schemas.user.User)
 # async def login(db: AsyncSession = Depends(deps.get_db), form_data: OAuth2PasswordRequestForm = Depends()) -> Any:
 async def login(*, response: Response, db: AsyncSession = Depends(deps.get_db), form_data: AuthPhoneForm) -> Any:
     """
@@ -84,7 +84,7 @@ async def login(*, response: Response, db: AsyncSession = Depends(deps.get_db), 
             "user": jsonable_encoder(user)
         }
 
-@router.post("/logout/")
+@router.post("/logout")
 async def logout_user(response: Response):
     response.delete_cookie(key="users_access_token")
     return {'message': 'Пользователь успешно вышел из системы'}

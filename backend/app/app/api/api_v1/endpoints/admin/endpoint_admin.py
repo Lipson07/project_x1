@@ -7,7 +7,7 @@ from typing import  Dict
 
 router = APIRouter()
 
-@router.get('/database_schema/')
+@router.get('/database_schema')
 async def database_schema() -> Dict:
     print(f'>>>>> Start get(/database_schema/): ')
     options = {}

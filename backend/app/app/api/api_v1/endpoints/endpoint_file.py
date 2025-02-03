@@ -16,7 +16,7 @@ router = APIRouter()
 
 BASE_PATH = Path(__file__).resolve().parent.parent.parent.parent
 
-@router.get('/read_file/{id}', response_model=schemas.file.File)
+@router.get('/read/{id}', response_model=schemas.file.File)
 async def read_file(id: int, db: AsyncSession = Depends(deps.get_db),
                     current_user: User = Depends(deps.get_current_user)
                     ) -> Any:
@@ -27,7 +27,7 @@ async def read_file(id: int, db: AsyncSession = Depends(deps.get_db),
     return file
 
 
-@router.get('/read_files', response_model=List[schemas.File])
+@router.get('/read', response_model=List[schemas.File])
 async def read_files(db: AsyncSession = Depends(deps.get_db),
                      current_user: User = Depends(deps.get_current_user)
                      ) -> Any:
@@ -35,7 +35,7 @@ async def read_files(db: AsyncSession = Depends(deps.get_db),
     return await crud.file.get_all(db)
 
 
-@router.post('/create_file')
+@router.post('/create')
 async def create_file(*, db: AsyncSession = Depends(deps.get_db),
                       current_user: User = Depends(deps.get_current_user),
                       myfile: UploadFile = File(...), ) -> Any:
@@ -54,7 +54,7 @@ async def create_file(*, db: AsyncSession = Depends(deps.get_db),
     return created.to_dict()
 
 
-@router.put('/update_file/{id}', response_model=schemas.File)
+@router.put('/update/{id}', response_model=schemas.File)
 async def update_file(*, db: AsyncSession = Depends(deps.get_db),
                       current_user: User = Depends(deps.get_current_user),
                       id: int,
@@ -79,7 +79,7 @@ async def update_file(*, db: AsyncSession = Depends(deps.get_db),
     return file
 
 
-@router.delete('/delete_file/{id}', response_model=schemas.File)
+@router.delete('/delete/{id}', response_model=schemas.File)
 async def delete_file(*, db: AsyncSession = Depends(deps.get_db),
                       current_user: User = Depends(deps.get_current_user),
                       id: int, ) -> Any:
