@@ -7,7 +7,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
 
-from app import crud
+from crud import crud
 from app.api import deps
 
 # Here importing your custom api routers
