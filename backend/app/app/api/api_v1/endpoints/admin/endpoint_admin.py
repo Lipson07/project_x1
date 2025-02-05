@@ -22,8 +22,6 @@ async def database_schema() -> Dict:
             )
 
             for dct in options[table_name]:
-                dct['type']= dct['type'].python_type
+                dct['type']= dct['type'].python_type.__name__
 
-    print(f'>>>>> options: {options}')
-    return options
-    # return jsonable_encoder(options)
+    return jsonable_encoder(options)

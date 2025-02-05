@@ -42,6 +42,10 @@ async def create_file(*, db: AsyncSession = Depends(deps.get_db),
 
     # https://www.geeksforgeeks.org/save-uploadfile-in-fastapi/
     files_path =str(BASE_PATH / "static/files" )
+
+    if not os.path.exists(files_path):
+        os.mkdir(files_path)
+
     filename =  f"{files_path}/{uuid.uuid4()}-{myfile.filename}"
     with open(filename, "wb") as f:
         # while contents := :
@@ -69,6 +73,10 @@ async def update_file(*, db: AsyncSession = Depends(deps.get_db),
     os.remove(f['path'])
 
     files_path = str(BASE_PATH / "static/files")
+
+    if not os.path.exists(files_path):
+        os.mkdir(files_path)
+
     filename = f"{files_path}/{uuid.uuid4()}-{myfile.filename}"
     with open(filename, "wb") as f:
         # while contents := myfile.file.read(1024 * 1024):
@@ -91,5 +99,6 @@ async def delete_file(*, db: AsyncSession = Depends(deps.get_db),
         raise HTTPException(status_code=404, detail="file doesn't exist")
 
     f=jsonable_encoder(file)
-    os.remove(f['path'])
+    if os.path.exists(f['path']):
+        os.remove(f['path'])
     return await crud.file.remove(db=db, id=id)

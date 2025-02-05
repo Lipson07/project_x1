@@ -11,9 +11,7 @@ from alembic import command
 from app.core.config import ROOT
 
 
-print(f'>>> ############# {str(ROOT.parent / "alembic.ini")}')
-#alembic_cfg = Config(ROOT.parent / "alembic.ini")
-alembic_cfg = Config()
+alembic_cfg = Config( str(ROOT.parent / "alembic.ini") )
 alembic_cfg.set_main_option('script_location', str(ROOT.parent / "alembic"))
 alembic_cfg.set_main_option('sqlalchemy.url', os.environ.get("SQLALCHEMY_DATABASE_URI"))
 
