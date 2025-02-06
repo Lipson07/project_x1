@@ -17,6 +17,8 @@ class Job(Base):
     salary: Mapped[int]
     employment_level_id: Mapped[int] = mapped_column( ForeignKey("employment_levels.id", ondelete='cascade') )
     employment_type_id: Mapped[int] = mapped_column( ForeignKey("employment_types.id", ondelete='cascade') )
+    location_id: Mapped[int] = mapped_column( ForeignKey("locations.id", ondelete='cascade') )
 
     employment_level: Mapped[Employment_Level] = relationship("Employment_Level", lazy="joined", cascade="all")
     employment_type: Mapped[Employment_Type] = relationship("Employment_Type", lazy="joined", cascade="all")
+    location: Mapped[Employment_Type] = relationship("Location", lazy="joined", cascade="all")
