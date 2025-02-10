@@ -1,3 +1,26 @@
+<<<<<<< HEAD
+
+import subprocess
+import sys, os
+from pathlib import Path
+
+
+print(str(Path(__file__).resolve().parent))
+os.environ["DATABASE_URL"] = "sqlite+aiosqlite:///./database.db"
+os.environ["SQLALCHEMY_DATABASE_URI"] = "sqlite+aiosqlite:///./database.db"
+os.environ["PYTHONPATH"] = str(Path(__file__).resolve().parent)
+os.environ["BACKEND_CORS_ORIGINS"]="http://localhost,http://localhost:80,http://localhost:4200,http://localhost:8001,http://localhost:3000,https://localhost:8001"
+
+
+if os.path.exists("./prestart.py") :
+    subprocess.run([sys.executable, "./prestart.py"])
+else:
+    print("There is no script ./prestart.py")
+
+
+
+
+=======
 
 import subprocess
 import sys, os
@@ -22,4 +45,5 @@ else:
 
 
 
+>>>>>>> aa8afdca26826489b859cb681ad760b7d3d0d16d
 subprocess.run([sys.executable, "./app/main.py"])
