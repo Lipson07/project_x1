@@ -41,7 +41,7 @@ async def create_file(*, db: AsyncSession = Depends(deps.get_db),
                       myfile: UploadFile = File(...), ) -> Any:
 
     # https://www.geeksforgeeks.org/save-uploadfile-in-fastapi/
-    files_path =str(BASE_PATH / "static/files" )
+    files_path ="/files" 
 
     if not os.path.exists(files_path):
         os.mkdir(files_path)
@@ -72,7 +72,7 @@ async def update_file(*, db: AsyncSession = Depends(deps.get_db),
     f = jsonable_encoder(file)
     os.remove(f['path'])
 
-    files_path = str(BASE_PATH / "static/files")
+    files_path = "/files"
 
     if not os.path.exists(files_path):
         os.mkdir(files_path)
