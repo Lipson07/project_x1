@@ -50,14 +50,10 @@ class Base(AsyncAttrs, DeclarativeBase):
         return result
 
 
-# from sqlalchemy.orm import registry
-# from sqlalchemy import Integer, String, Column, Boolean
-
-# mapper_registry = registry()
-
-# @mapper_registry.as_declarative_base()
-# class Base(object):
-#    @declared_attr
-#    def __tablename__(cls):
-#        return cls.__name__.lower()
-#    id = Column(Integer, primary_key=True)
+def get_class_by_table_name(table_name: str) -> type:
+    # Iterate through all mappers in the registry
+    for mapper in Base.registry.mappers:
+        # Check if the mapper's table name matches the target
+        if mapper.local_table.name == table_name:
+            return mapper.class_
+    raise ValueError(f"No class found for table '{table_name}'")

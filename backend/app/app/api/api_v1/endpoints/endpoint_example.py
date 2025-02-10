@@ -18,7 +18,7 @@ def just_exemple():
 
 
 
-@router.get('/read_exemple/{id}', response_model=Exemple)
+@router.get('/read/{id}', response_model=Exemple)
 async def read_exemple(id: int,
                     db: AsyncSession = Depends(deps.get_db),
                     # current_user: models.User = Depends(deps.get_current_user)
@@ -33,7 +33,7 @@ async def read_exemple(id: int,
     return exemple
 
 
-@router.get('/read_exemples', response_model=List[Exemple])
+@router.get('/read', response_model=List[Exemple])
 async def read_exemples(db: AsyncSession = Depends(deps.get_db),
                      # current_user: models.User = Depends(deps.get_current_user),
                      ) -> Any:
