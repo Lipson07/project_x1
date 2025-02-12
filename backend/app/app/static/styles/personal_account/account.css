@@ -1,0 +1,21 @@
+.nav-item:hover {
+    background: #2563eb;
+    transition: all 0.3s;
+  }
+  
+  .project-card {
+    transition: transform 0.2s;
+  }
+  
+  .project-card:hover {
+    transform: translateY(-4px);
+  }
+  
+  .stats-card {
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
