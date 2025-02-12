@@ -13,7 +13,8 @@ class Settings(BaseSettings):  # 1
 
     # Here are declared env variables
 
-    API_V1_STR: str = "/api/v1"  # 2
+    # API_V1_STR: str = "/api/v1"  # 2
+    API_V1_STR: str = ""  # 2
     # You have to change JWT_SECRET in your dev project meanwhile JWT_SECRET: str = "TEST_SECRET_DO_NOT_USE_IN_PROD"
     JWT_SECRET: str = "SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
     ALGORITHM: str = "HS256"

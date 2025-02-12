@@ -11,7 +11,7 @@ from app.models.user import User
 router = APIRouter()
 
 
-@router.get('/read_role/{id}', response_model=Role)
+@router.get('/read/{id}', response_model=Role)
 async def read_role(id: int,
                          db: AsyncSession = Depends(deps.get_db),
                          current_user: User = Depends(deps.get_current_user)) -> Any:
@@ -25,7 +25,7 @@ async def read_role(id: int,
     return role
 
 
-@router.get('/read_roles', response_model=List[Role])
+@router.get('/read', response_model=List[Role])
 async def read_roles(db: AsyncSession = Depends(deps.get_db),
                           current_user: User = Depends(deps.get_current_user)
                           ) -> Any:
@@ -35,7 +35,7 @@ async def read_roles(db: AsyncSession = Depends(deps.get_db),
     return await crud.role.get_all(db)
 
 
-@router.post('/create_role', response_model=Role)
+@router.post('/create', response_model=Role)
 async def create_role(*, db: AsyncSession = Depends(deps.get_db),
                            current_user: User = Depends(deps.get_current_user),
                            role_in: RoleCreate,
@@ -46,7 +46,7 @@ async def create_role(*, db: AsyncSession = Depends(deps.get_db),
     return await crud.role.create(db=db, obj_in=role_in)
 
 
-@router.put('/update_role/{id}', response_model=Role)
+@router.put('/update/{id}', response_model=Role)
 async def update_role(*, db: AsyncSession = Depends(deps.get_db),
                            current_user: User = Depends(deps.get_current_user),
                            id: int, role_in: RoleUpdate,
@@ -61,7 +61,7 @@ async def update_role(*, db: AsyncSession = Depends(deps.get_db),
     return role
 
 
-@router.delete('/delete_role/{id}', response_model=Role)
+@router.delete('/delete/{id}', response_model=Role)
 async def delete_role(*, db: AsyncSession = Depends(deps.get_db),
                            current_user: User = Depends(deps.get_current_user),
                            id: int,
