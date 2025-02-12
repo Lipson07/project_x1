@@ -8,7 +8,6 @@ import re
 
 
 class FaqBase(BaseModel):
-    nickname: Optional[str] = Field(..., description="")
 
     question: str = Field(..., description="")
     answer: str = Field(..., description="")
