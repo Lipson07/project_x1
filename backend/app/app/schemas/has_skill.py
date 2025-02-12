@@ -10,8 +10,9 @@ from app.schemas.skill import Skill
 
 class Has_SkillBase(BaseModel):
 
-    user_id: Optional[str] = Field(..., description="")
-    skill_id: Optional[str] = Field(..., description="")
+    user_id: Optional[int] = Field(..., description="ID пользователя")
+    skill_id: Optional[int] = Field(..., description="ID навыка")
+
 
 
 # Properties to receive via API on creation
