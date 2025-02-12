@@ -1,3 +1,4 @@
+// Поиск по таблице
 document.querySelector('.search').addEventListener('input', function(e) {
     const searchText = e.target.value.toLowerCase();
     const rows = document.querySelectorAll('.table tbody tr');
@@ -6,26 +7,21 @@ document.querySelector('.search').addEventListener('input', function(e) {
       const text = row.textContent.toLowerCase();
       row.style.display = text.includes(searchText) ? '' : 'none';
     });
-<<<<<<< HEAD
-});
-  
-document.querySelectorAll('.table th').forEach(header => {
-=======
   });
   
+  // Сортировка по столбцам
   document.querySelectorAll('.table th').forEach(header => {
->>>>>>> f8fbb9169ac614bbe6998b40de55d58bacf2c8fd
     header.addEventListener('click', function() {
       const index = Array.from(this.parentNode.children).indexOf(this);
       const rows = Array.from(document.querySelectorAll('.table tbody tr'));
-      const isNumeric = index === 0;
+      const isNumeric = index === 1 || index === 2;
       
       rows.sort((a, b) => {
         const aVal = a.children[index].textContent;
         const bVal = b.children[index].textContent;
         
         if (isNumeric) {
-          return parseInt(aVal) - parseInt(bVal);
+          return parseInt(aVal.replace(/[^0-9]/g, '')) - parseInt(bVal.replace(/[^0-9]/g, ''));
         }
         return aVal.localeCompare(bVal);
       });
@@ -35,13 +31,10 @@ document.querySelectorAll('.table th').forEach(header => {
     });
   });
   
+  // Обработка кнопок удаления
   document.querySelectorAll('.btn-danger').forEach(btn => {
     btn.addEventListener('click', function() {
-<<<<<<< HEAD
-      if (confirm('Вы уверены, что хотите удалить эту запись?')) {
-=======
-      if (confirm('Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ СЌС‚Сѓ Р·Р°РїРёСЃСЊ?')) {
->>>>>>> f8fbb9169ac614bbe6998b40de55d58bacf2c8fd
+      if (confirm('Вы уверены, что хотите удалить эту таблицу?')) {
         const row = this.closest('tr');
         row.style.opacity = '0';
         setTimeout(() => row.remove(), 300);
@@ -49,37 +42,18 @@ document.querySelectorAll('.table th').forEach(header => {
     });
   });
   
+  // Обработка кнопок просмотра
   document.querySelectorAll('.btn-success').forEach(btn => {
     btn.addEventListener('click', function() {
-      const row = this.closest('tr');
-      const id = row.querySelector('td').textContent;
-<<<<<<< HEAD
-      alert(`Редактирование записи #${id}`);
-=======
-      alert(`Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ Р·Р°РїРёСЃРё #${id}`);
->>>>>>> f8fbb9169ac614bbe6998b40de55d58bacf2c8fd
+      const tableName = this.closest('tr').querySelector('td').textContent;
+      alert(`Просмотр таблицы: ${tableName}`);
     });
   });
   
-  document.querySelectorAll('.filter-select').forEach(select => {
-    select.addEventListener('change', function() {
-<<<<<<< HEAD
-      console.log('Применен фильтр:', this.value);
-=======
-      console.log('РџСЂРёРјРµРЅРµРЅ С„РёР»СЊС‚СЂ:', this.value);
->>>>>>> f8fbb9169ac614bbe6998b40de55d58bacf2c8fd
-    });
-  });
-  
+  // Пагинация
   document.querySelectorAll('.page-btn').forEach(btn => {
     btn.addEventListener('click', function() {
-      if (!this.classList.contains('active')) {
-        document.querySelector('.page-btn.active')?.classList.remove('active');
-        this.classList.add('active');
-      }
+      document.querySelector('.page-btn.active').classList.remove('active');
+      this.classList.add('active');
     });
-<<<<<<< HEAD
-});
-=======
   });
->>>>>>> f8fbb9169ac614bbe6998b40de55d58bacf2c8fd
