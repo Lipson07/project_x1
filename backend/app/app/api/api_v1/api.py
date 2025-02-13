@@ -4,7 +4,8 @@ from app.api.api_v1.endpoints import auth, endpoint_example
 from app.api.api_v1.endpoints import (
     endpoint_user, endpoint_role, endpoint_file, endpoint_faq, endpoint_locations,
     endpoint_employment_levels, endpoint_employment_types, endpoint_skill_types,
-    endpoint_skills, endpoint_has_skils
+    endpoint_skills, endpoint_has_skils, endpoint_experience, endpoint_message,
+    endpoint_formation, endpoint_certificate, endpoint_job, endpoint_job_application
     )
 from app.api.api_v1.endpoints.admin import  endpoint_admin
 from  app.api.api_v1.endpoints.common_part import endpoint_mainpage
@@ -27,3 +28,13 @@ api_router.include_router(endpoint_employment_types.router, prefix="/employment_
 api_router.include_router(endpoint_skill_types.router, prefix="/skill_type", tags=["skill_type"])
 api_router.include_router(endpoint_skills.router, prefix="/skill", tags=["skill"])
 api_router.include_router(endpoint_has_skils.router, prefix="/has_skill", tags=["has_skill"])
+
+api_router.include_router(endpoint_experience.router, prefix="/experience", tags=["experience"])
+api_router.include_router(endpoint_message.router, prefix="/message", tags=["message"])
+api_router.include_router(endpoint_formation.router, prefix="/formation", tags=["formation"])
+api_router.include_router(endpoint_certificate.router, prefix="/certificate", tags=["certificate"])
+api_router.include_router(endpoint_job.router, prefix="/job", tags=["job"])
+api_router.include_router(endpoint_job_application.router, prefix="/job_application", tags=["job_application"])
+
+
+
