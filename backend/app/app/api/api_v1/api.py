@@ -4,7 +4,9 @@ from app.api.api_v1.endpoints import auth, endpoint_example
 from app.api.api_v1.endpoints import (
     endpoint_user, endpoint_role, endpoint_file, endpoint_faq, endpoint_locations,
     endpoint_employment_levels, endpoint_employment_types, endpoint_skill_types,
-    endpoint_skills, endpoint_has_skils
+    endpoint_skills, endpoint_has_skils, endpoint_tasks, endpoint_task_status, 
+    endpoint_assigned_tasks, endpoint_project_document_types, endpoint_projects, 
+    endpoint_project_documents, endpoint_participants 
     )
 from app.api.api_v1.endpoints.admin import  endpoint_admin
 from  app.api.api_v1.endpoints.common_part import endpoint_mainpage
@@ -27,3 +29,11 @@ api_router.include_router(endpoint_employment_types.router, prefix="/employment_
 api_router.include_router(endpoint_skill_types.router, prefix="/skill_type", tags=["skill_type"])
 api_router.include_router(endpoint_skills.router, prefix="/skill", tags=["skill"])
 api_router.include_router(endpoint_has_skils.router, prefix="/has_skill", tags=["has_skill"])
+
+api_router.include_router(endpoint_tasks.router, prefix="/task", tags=["task"])
+api_router.include_router(endpoint_task_status.router, prefix="/task_status", tags=["task_status"])
+api_router.include_router(endpoint_assigned_tasks.router, prefix="/assigned_tasks", tags=["assigned_tasks"])
+api_router.include_router(endpoint_project_document_types.router, prefix="/project_document_type", tags=["project_document_type"])
+api_router.include_router(endpoint_projects.router, prefix="/project", tags=["project"])
+api_router.include_router(endpoint_project_documents.router, prefix="/project_document", tags=["project_document"])
+api_router.include_router(endpoint_participants.router, prefix="/participant", tags=["participant"])
