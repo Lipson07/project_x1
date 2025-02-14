@@ -12,7 +12,7 @@ from app.schemas.project_document import Project_Document, Project_DocumentCreat
 router = APIRouter()
 
 
-@router.get('/read_project_document/{id}',  response_model=Project_Document)
+@router.get('/read/{id}',  response_model=Project_Document)
 async def read_project_document(id: int,   
                                 db: AsyncSession = Depends(deps.get_db),
                                 current_user: User = Depends(deps.get_current_user)) -> Any:
@@ -26,7 +26,7 @@ async def read_project_document(id: int,
     return project_document
 
 
-@router.get('/read_project_documents', response_model=List[Project_Document])
+@router.get('/read', response_model=List[Project_Document])
 async def read_project_documents(db: AsyncSession = Depends(deps.get_db),
                                  current_user: User = Depends(deps.get_current_user))->Any:
     """
@@ -35,7 +35,7 @@ async def read_project_documents(db: AsyncSession = Depends(deps.get_db),
     return await crud.project_document.get_all(db)
 
 
-@router.post('/create_project_document', response_model= Project_Document)
+@router.post('/create', response_model= Project_Document)
 async def create_project_document(*, db: AsyncSession = Depends(deps.get_db), 
                         project_document_in: Project_DocumentCreate,
                         current_user: User = Depends(deps.get_current_user)  
@@ -47,7 +47,7 @@ async def create_project_document(*, db: AsyncSession = Depends(deps.get_db),
 
 
 
-@router.put('/update_project_document/{id}', response_model= Project_Document)
+@router.put('/update/{id}', response_model= Project_Document)
 async def update_project_document(*, db: AsyncSession = Depends(deps.get_db), 
                         id: int, project_document_in: Project_DocumentUpdate,
                         current_user: User = Depends(deps.get_current_user)  
@@ -62,7 +62,7 @@ async def update_project_document(*, db: AsyncSession = Depends(deps.get_db),
     return project_document
 
 
-@router.delete('/delete_project_document/{id}', response_model= Project_Document)
+@router.delete('/delete/{id}', response_model= Project_Document)
 async def delete_project_document(*, db: AsyncSession = Depends(deps.get_db), 
                         id: int,
                         current_user: User = Depends(deps.get_current_user)  

@@ -12,7 +12,7 @@ from app.schemas.project import Project, ProjectCreate, ProjectUpdate
 router = APIRouter()
 
 
-@router.get('/read_project/{id}',  response_model=Project)
+@router.get('/read/{id}',  response_model=Project)
 async def read_project(id: int,   
                        db: AsyncSession = Depends(deps.get_db),
                        current_user: User = Depends(deps.get_current_user)) -> Any:
@@ -26,7 +26,7 @@ async def read_project(id: int,
     return project
 
 
-@router.get('/read_projects', response_model=List[Project])
+@router.get('/read', response_model=List[Project])
 async def read_projects(db: AsyncSession = Depends(deps.get_db),
                         current_user: User = Depends(deps.get_current_user))->Any:
     """
@@ -35,7 +35,7 @@ async def read_projects(db: AsyncSession = Depends(deps.get_db),
     return await crud.project.get_all(db)
 
 
-@router.post('/create_project', response_model= Project)
+@router.post('/create', response_model= Project)
 async def create_project(*, db: AsyncSession = Depends(deps.get_db), 
                         project_in: ProjectCreate,
                         current_user: User = Depends(deps.get_current_user)  
@@ -47,7 +47,7 @@ async def create_project(*, db: AsyncSession = Depends(deps.get_db),
 
 
 
-@router.put('/update_project/{id}', response_model= Project)
+@router.put('/update/{id}', response_model= Project)
 async def update_project(*, db: AsyncSession = Depends(deps.get_db), 
                         id: int, project_in: ProjectUpdate,
                         current_user: User = Depends(deps.get_current_user)  
@@ -62,7 +62,7 @@ async def update_project(*, db: AsyncSession = Depends(deps.get_db),
     return project
 
 
-@router.delete('/delete_project/{id}', response_model= Project)
+@router.delete('/delete/{id}', response_model= Project)
 async def delete_project(*, db: AsyncSession = Depends(deps.get_db), 
                         id: int,
                         current_user: User = Depends(deps.get_current_user)  
