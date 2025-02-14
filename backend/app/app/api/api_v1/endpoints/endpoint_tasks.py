@@ -12,7 +12,7 @@ from app.models.user import User
 router = APIRouter()
 
 
-@router.get('/read_task/{id}',  response_model=Task)
+@router.get('/read/{id}',  response_model=Task)
 async def read_task(id: int,   
                     db: AsyncSession = Depends(deps.get_db),
                     current_user: User = Depends(deps.get_current_user)) -> Any:
@@ -26,7 +26,7 @@ async def read_task(id: int,
     return task
 
 
-@router.get('/read_tasks', response_model=List[Task])
+@router.get('/read', response_model=List[Task])
 async def read_tasks(db: AsyncSession = Depends(deps.get_db),
                      current_user: User = Depends(deps.get_current_user)) -> Any:
     """
@@ -35,7 +35,7 @@ async def read_tasks(db: AsyncSession = Depends(deps.get_db),
     return await crud.task.get_all(db)
 
 
-@router.post('/create_task', response_model= Task)
+@router.post('/create', response_model= Task)
 async def create_task(*, db: AsyncSession = Depends(deps.get_db), 
                         task_in: TaskCreate,
                         current_user: User = Depends(deps.get_current_user)  
@@ -47,7 +47,7 @@ async def create_task(*, db: AsyncSession = Depends(deps.get_db),
 
 
 
-@router.put('/update_task/{id}', response_model= Task)
+@router.put('/update/{id}', response_model= Task)
 async def update_task(*, db: AsyncSession = Depends(deps.get_db), 
                         id: int, task_in: TaskUpdate,
                         current_user: User = Depends(deps.get_current_user)  
@@ -62,7 +62,7 @@ async def update_task(*, db: AsyncSession = Depends(deps.get_db),
     return task
 
 
-@router.delete('/delete_task/{id}', response_model= Task)
+@router.delete('/delete/{id}', response_model= Task)
 async def delete_task(*, db: AsyncSession = Depends(deps.get_db), 
                         id: int,
                         current_user: User = Depends(deps.get_current_user)  
