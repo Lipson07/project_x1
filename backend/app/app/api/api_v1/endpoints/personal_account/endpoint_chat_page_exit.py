@@ -10,6 +10,6 @@ router = APIRouter()
 BASE_PATH = Path(__file__).resolve().parent.parent.parent.parent.parent
 TEMPLATES = Jinja2Templates(directory=str(BASE_PATH / "templates"))
 
-@router.get("/", response_class=HTMLResponse, summary="Чат")
+@router.get("/chat_page_exit", response_class=HTMLResponse, summary="Чат")
 async def chat_page_exit(request: Request):
     return TEMPLATES.TemplateResponse("personal_account/chat_page_exit.html", {"request": request})

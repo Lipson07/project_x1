@@ -10,6 +10,6 @@ router = APIRouter()
 BASE_PATH = Path(__file__).resolve().parent.parent.parent.parent.parent
 TEMPLATES = Jinja2Templates(directory=str(BASE_PATH / "templates"))
 
-@router.get("/", response_class=HTMLResponse, summary="Назначенные задачи")
+@router.get("/assigned_tasks", response_class=HTMLResponse, summary="Назначенные задачи")
 async def assigned_task_page(request: Request):
     return TEMPLATES.TemplateResponse("personal_account/assigned_tasks.html", {"request": request})

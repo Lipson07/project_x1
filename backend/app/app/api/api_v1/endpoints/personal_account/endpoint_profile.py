@@ -10,6 +10,6 @@ router = APIRouter()
 BASE_PATH = Path(__file__).resolve().parent.parent.parent.parent.parent
 TEMPLATES = Jinja2Templates(directory=str(BASE_PATH / "templates"))
 
-@router.get("/", response_class=HTMLResponse, summary="Профиль")
+@router.get("/profile", response_class=HTMLResponse, summary="Профиль")
 async def profile_page(request: Request):
     return TEMPLATES.TemplateResponse("personal_account/profile.html", {"request": request})

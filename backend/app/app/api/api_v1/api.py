@@ -20,6 +20,11 @@ from  app.api.api_v1.endpoints.common_part import (
     endpoint_job_postings
     )
 
+from  app.api.api_v1.endpoints.personal_account import (
+    endpoint_account, endpoint_assigned_tasks, endpoint_chat_page_enter,
+    endpoint_chat_page_exit, endpoint_profile
+)
+
 api_router = APIRouter()
 api_router.include_router(auth.router, prefix="/auth", tags=["auth"])
 api_router.include_router(endpoint_example.router, prefix="/example", tags=["example"])
@@ -72,3 +77,9 @@ api_router.include_router(endpoint_employee_list.router, prefix="", tags=["emplo
 api_router.include_router(endpoint_job_postings.router, prefix="", tags=["job_postings"])
 api_router.include_router(endpoint_job_application.router, prefix="", tags=["job_application"])
 
+# personal_account page
+api_router.include_router(endpoint_account.router, prefix="", tags=["account"])
+api_router.include_router(endpoint_assigned_tasks.router, prefix="", tags=["assigned_tasks"])
+api_router.include_router(endpoint_chat_page_enter.router, prefix="", tags=["chat_page_enter"])
+api_router.include_router(endpoint_chat_page_exit.router, prefix="", tags=["chat_page_exit"])
+api_router.include_router(endpoint_profile.router, prefix="", tags=["profile"])
