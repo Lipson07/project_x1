@@ -8,8 +8,15 @@ from app.api.api_v1.endpoints import (
     endpoint_assigned_tasks, endpoint_project_document_types, endpoint_projects, 
     endpoint_project_documents, endpoint_participants 
     )
-from app.api.api_v1.endpoints.admin import  endpoint_admin
-from  app.api.api_v1.endpoints.common_part import endpoint_mainpage
+from app.api.api_v1.endpoints.admin import (
+    endpoint_admin, endpoint_dashboard, endpoint_admin_table_content,
+    endpoint_admin_tables, endpoint_registration
+    )
+from  app.api.api_v1.endpoints.common_part import (
+    endpoint_mainpage, endpoint_case_detail, endpoint_case_list,
+    endpoint_cv_detail, endpoint_employee_list, endpoint_job_application, 
+    endpoint_job_postings
+    )
 
 api_router = APIRouter()
 api_router.include_router(auth.router, prefix="/auth", tags=["auth"])
@@ -21,6 +28,8 @@ api_router.include_router(endpoint_file.router, prefix="/file", tags=["file"])
 
 api_router.include_router(endpoint_admin.router, prefix="/admin", tags=["admin"])
 api_router.include_router(endpoint_mainpage.router, prefix="", tags=["main_page"])
+
+
 
 api_router.include_router(endpoint_faq.router, prefix="/faq", tags=["faq"])
 api_router.include_router(endpoint_locations.router, prefix="/location", tags=["location"])
@@ -37,3 +46,18 @@ api_router.include_router(endpoint_project_document_types.router, prefix="/proje
 api_router.include_router(endpoint_projects.router, prefix="/project", tags=["project"])
 api_router.include_router(endpoint_project_documents.router, prefix="/project_document", tags=["project_document"])
 api_router.include_router(endpoint_participants.router, prefix="/participant", tags=["participant"])
+
+# admin page
+api_router.include_router(endpoint_dashboard.router, prefix="", tags=["dashboard"])
+api_router.include_router(endpoint_admin_table_content.router, prefix="", tags=["admin_db_tables"])
+api_router.include_router(endpoint_admin_tables.router, prefix="", tags=["admin_tables"])
+api_router.include_router(endpoint_registration.router, prefix="", tags=["registration"])
+
+# common_part page
+api_router.include_router(endpoint_case_detail.router, prefix="", tags=["case_detail"])
+api_router.include_router(endpoint_case_list.router, prefix="", tags=["case_list"])
+api_router.include_router(endpoint_cv_detail.router, prefix="", tags=["cv_detail"])
+api_router.include_router(endpoint_employee_list.router, prefix="", tags=["employee_list"])
+api_router.include_router(endpoint_job_postings.router, prefix="", tags=["job_postings"])
+api_router.include_router(endpoint_job_application.router, prefix="", tags=["job_application"])
+
