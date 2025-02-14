@@ -12,7 +12,7 @@ from app.schemas.participant import Participant, ParticipantCreate, ParticipantU
 router = APIRouter()
 
 
-@router.get('/read_participant/{id}',  response_model=Participant)
+@router.get('/read/{id}',  response_model=Participant)
 async def read_participant(id: int,   
                            db: AsyncSession = Depends(deps.get_db),
                            current_user: User = Depends(deps.get_current_user)) -> Any:
@@ -26,7 +26,7 @@ async def read_participant(id: int,
     return participant
 
 
-@router.get('/read_participants', response_model=List[Participant])
+@router.get('/read', response_model=List[Participant])
 async def read_participants(db: AsyncSession = Depends(deps.get_db),
                             current_user: User = Depends(deps.get_current_user))->Any:
     """
@@ -35,7 +35,7 @@ async def read_participants(db: AsyncSession = Depends(deps.get_db),
     return await crud.participant.get_all(db)
 
 
-@router.post('/create_participant', response_model= Participant)
+@router.post('/create', response_model= Participant)
 async def create_participant(*, db: AsyncSession = Depends(deps.get_db), 
                         participant_in: ParticipantCreate,
                         current_user: User = Depends(deps.get_current_user)  
@@ -47,7 +47,7 @@ async def create_participant(*, db: AsyncSession = Depends(deps.get_db),
 
 
 
-@router.put('/update_participant/{id}', response_model= Participant)
+@router.put('/update/{id}', response_model= Participant)
 async def update_participant(*, db: AsyncSession = Depends(deps.get_db), 
                         id: int, participant_in: ParticipantUpdate,
                         current_user: User = Depends(deps.get_current_user)  
@@ -62,7 +62,7 @@ async def update_participant(*, db: AsyncSession = Depends(deps.get_db),
     return participant
 
 
-@router.delete('/delete_participant/{id}', response_model= Participant)
+@router.delete('/delete/{id}', response_model= Participant)
 async def delete_participant(*, db: AsyncSession = Depends(deps.get_db), 
                         id: int,
                         current_user: User = Depends(deps.get_current_user)  

@@ -12,7 +12,7 @@ from app.schemas.assigned_task import Assigned_Task, Assigned_TaskCreate, Assign
 router = APIRouter()
 
 
-@router.get('/read_assigned_task/{id}',  response_model=Assigned_Task)
+@router.get('/read/{id}',  response_model=Assigned_Task)
 async def read_assigned_task(id: int,   
                              db: AsyncSession = Depends(deps.get_db),
                              current_user: User = Depends(deps.get_current_user)) -> Any:
@@ -26,7 +26,7 @@ async def read_assigned_task(id: int,
     return assigned_task
 
 
-@router.get('/read_assigned_tasks', response_model=List[Assigned_Task])
+@router.get('/read', response_model=List[Assigned_Task])
 async def read_assigned_tasks(db: AsyncSession = Depends(deps.get_db),
                               current_user: User = Depends(deps.get_current_user))->Any:
     """
@@ -35,7 +35,7 @@ async def read_assigned_tasks(db: AsyncSession = Depends(deps.get_db),
     return await crud.assigned_task.get_all(db)
 
 
-@router.post('/create_assigned_task', response_model= Assigned_Task)
+@router.post('/create', response_model= Assigned_Task)
 async def create_assigned_task(*, db: AsyncSession = Depends(deps.get_db), 
                         assigned_task_in: Assigned_TaskCreate,
                         current_user: User = Depends(deps.get_current_user)  
@@ -47,7 +47,7 @@ async def create_assigned_task(*, db: AsyncSession = Depends(deps.get_db),
 
 
 
-@router.put('/update_assigned_task/{id}', response_model= Assigned_Task)
+@router.put('/update/{id}', response_model= Assigned_Task)
 async def update_assigned_task(*, db: AsyncSession = Depends(deps.get_db), 
                         id: int, assigned_task_in: Assigned_TaskUpdate,
                         current_user: User = Depends(deps.get_current_user)  
@@ -62,7 +62,7 @@ async def update_assigned_task(*, db: AsyncSession = Depends(deps.get_db),
     return updated_assigned_task
 
 
-@router.delete('/delete_assigned_task/{id}', response_model= Assigned_Task)
+@router.delete('/delete/{id}', response_model= Assigned_Task)
 async def delete_assigned_task(*, db: AsyncSession = Depends(deps.get_db), 
                         id: int,
                         current_user: User = Depends(deps.get_current_user)  
