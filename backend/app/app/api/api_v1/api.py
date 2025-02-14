@@ -4,12 +4,12 @@ from app.api.api_v1.endpoints import auth, endpoint_example
 from app.api.api_v1.endpoints import (
     endpoint_user, endpoint_role, endpoint_file, endpoint_faq, endpoint_locations,
     endpoint_employment_levels, endpoint_employment_types, endpoint_skill_types,
-    endpoint_has_skils, endpoint_experience, endpoint_message,
+    endpoint_experience, endpoint_message,
     endpoint_formation, endpoint_certificate, endpoint_job, endpoint_job_application,
     endpoint_skills, endpoint_has_skils, endpoint_tasks, endpoint_task_status, 
     endpoint_assigned_tasks, endpoint_project_document_types, endpoint_projects, 
     endpoint_project_documents, endpoint_participants)
-from app.api.api_v1.endpoints.admin import  endpoint_admin
+from app.api.api_v1.endpoints.admin import endpoint_admin
 from  app.api.api_v1.endpoints.common_part import endpoint_mainpage
 
 api_router = APIRouter()
