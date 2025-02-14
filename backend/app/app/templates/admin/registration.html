@@ -1,5 +1,5 @@
 <html><head><base href=""><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Регистрация</title>
-  <link rel="stylesheet" href="../../../../app/app/static/styles/admin/registration.css">
+  <link rel="stylesheet" href="{{ url_for('static', path='/styles/admin/registration.css') }}">
 </head><body>
   <div class="container">
     <div class="title">Регистрация</div>
@@ -38,7 +38,7 @@
     </form>
   </div>
 
-  <script src="../../../../app/app/static/js/admin/registration.js">
+  <script src="{{ url_for('static', path='/js/admin/registration.js') }}">
 
   </script>
 </body>
