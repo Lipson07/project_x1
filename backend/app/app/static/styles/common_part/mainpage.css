@@ -20,12 +20,13 @@
     flex-direction: row;
     justify-content: center;
     width: 100%;
+    margin-top: 85px;
   }
   
   .main .div {
     background-color: #eeecf5;
     width: 1440px;
-    height: 7218px;
+    height: 6700px;
     position: relative;
   }
   
